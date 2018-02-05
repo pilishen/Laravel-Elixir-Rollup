@@ -97,7 +97,7 @@ class RollupTask extends Elixir.Task {
 
         return rollup(
             extend({
-                entry: this.src.path,
+                input: this.src.path,
                 cache: cache,
                 sourcemap: true,
                 format: 'iife',
