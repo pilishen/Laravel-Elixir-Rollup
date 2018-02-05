@@ -53,4 +53,11 @@ With this adjustment, we'll compile `app/js/main.js` and `app/js/other.js`.
 Lastly, should you need to override the default Rollup configuration, you may do so by either creating a `rollup.config.js` file in your project root, 
 or by passing a Rollup config object as the fourth argument to `mix.rollup`. You can [learn more about Rollup config files here.](http://rollupjs.org/guide/#using-config-files)
 
+### Troubleshooting
+1. 尽管有rollup-plugin-commonjs来转换普通的js格式，但是你在一个js文件里不能混着使用`requre`和`import`，否则commonjs会跳过这个文件不转换，导致出现下面的错误
+```
+Uncaught ReferenceError: require is not defined
+```
+所以，尽量都用es6的`import`格式，或者完全用以前的`require`
+
 
