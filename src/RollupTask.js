@@ -63,6 +63,7 @@ class RollupTask extends Elixir.Task {
         nodeResolve = require('rollup-plugin-node-resolve');
         inject = require('rollup-plugin-inject');
         multiEntry = require('rollup-plugin-multi-entry');
+        json = require('rollup-plugin-json');
     }
 
 
@@ -90,7 +91,10 @@ class RollupTask extends Elixir.Task {
                 'process.env.NODE_ENV': JSON.stringify(Elixir.inProduction)
             }),
             vue(),
-            buble()
+            buble(),
+            json([
+                include: 'node_modules/**'
+            ])
         ].concat(this.options.plugins || []);
 
         delete this.options.plugins
