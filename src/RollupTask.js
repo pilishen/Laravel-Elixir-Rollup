@@ -3,7 +3,7 @@ import gulp from 'gulp';
 import {extend} from 'underscore';
 import Elixir from 'laravel-elixir';
 
-let buffer, inject, rollup, buble, vue, source, replace, commonjs, nodeResolve, multiEntry, cache;
+let buffer, inject, rollup, buble, vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json;
 
 class RollupTask extends Elixir.Task {
 
@@ -81,6 +81,7 @@ class RollupTask extends Elixir.Task {
             }),
             multiEntry(),
             nodeResolve({ browser: true, main: true, jsnext: true }),
+            json(),
             commonjs({
                 include: [
                     'node_modules/**',
@@ -92,9 +93,7 @@ class RollupTask extends Elixir.Task {
             }),
             vue(),
             buble(),
-            json([
-                include: 'node_modules/**'
-            ])
+
         ].concat(this.options.plugins || []);
 
         delete this.options.plugins
