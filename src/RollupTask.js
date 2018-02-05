@@ -3,7 +3,7 @@ import gulp from 'gulp';
 import {extend} from 'underscore';
 import Elixir from 'laravel-elixir';
 
-let buffer, inject, rollup, buble, vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins;
+let buffer, inject, rollup, buble, babel,vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins;
 
 class RollupTask extends Elixir.Task {
 
@@ -57,6 +57,7 @@ class RollupTask extends Elixir.Task {
         rollup = require('rollup-stream');
         vue = require('rollup-plugin-vue');
         buble = require('rollup-plugin-buble');
+        babel = require('rollup-plugin-babel');
         source = require('vinyl-source-stream');
         replace = require('rollup-plugin-replace');
         commonjs = require('rollup-plugin-commonjs');
@@ -77,10 +78,10 @@ class RollupTask extends Elixir.Task {
         this.recordStep('Bundling');
 
         var plugins = [
-            inject({
-                include: './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
-                jQuery: 'jQuery'
-            }),
+            //inject({
+            //    include: './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+            //    jQuery: 'jQuery'
+            //}),
             multiEntry(),
             json(),
             nodeResolve({ browser: true, main: true, jsnext: true , preferBuiltins: true}),
@@ -95,6 +96,11 @@ class RollupTask extends Elixir.Task {
             }),
             vue(),
             buble(),
+            babel({
+                exclude: 'node_modules/**',
+                "presets": ["env"],
+                "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
+            }),
             globals(),
             builtins()
         ].concat(this.options.plugins || []);
