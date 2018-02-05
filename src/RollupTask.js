@@ -98,7 +98,8 @@ class RollupTask extends Elixir.Task {
             buble(),
             babel({
                 exclude: 'node_modules/**',
-                "presets": ["env"],
+                babelrc: false,
+                "presets": ["es2015-rollup"],
                 "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
             }),
             globals(),
