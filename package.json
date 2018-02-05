@@ -25,7 +25,7 @@
     "#DEV:/",
     "#USER"
   ],
-  "_resolved": "github:pilishen/Laravel-Elixir-Rollup#442df296b97a28b6a36ca3524dd98fb9fdd64c76",
+  "_resolved": "github:pilishen/Laravel-Elixir-Rollup#d020816ce6e810952f9855f0d36a712cfec6b3f1",
   "_spec": "pilishen/Laravel-Elixir-Rollup",
   "_where": "/home/vagrant/Code/pilishen-dev",
   "author": {
@@ -34,8 +34,8 @@
   "bundleDependencies": false,
   "dependencies": {
     "buble": "^0.18.0",
-    "rollup-plugin-buble": "^0.18.0",
     "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-buble": "^0.18.0",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-inject": "^2.0.0",
     "rollup-plugin-json": "^2.3.0",
@@ -53,9 +53,9 @@
   "description": "Laravel Elixir Rollup integration.",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015-rollup": "^3.0.0"
   },
   "keywords": [
     "laravel",
