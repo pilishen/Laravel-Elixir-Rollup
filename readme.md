@@ -10,7 +10,7 @@ this is an optimized version to the orginal laravel-elixir-rollup-offical
 First, ensure that you're using Laravel Elixir v6 or newer. Next, install the extension like so:
 
 ```bash
-npm install laravel-rollup-elixir --save-dev
+npm install pilishen/Laravel-Elixir-Rollup --save-dev
 ```
 
 ## Use

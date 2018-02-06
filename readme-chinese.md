@@ -10,7 +10,7 @@ rollup的好处是相当于让我们提前享受ES6的写法，即使现在浏�
 首先，你得安装了 Laravel Elixir v6以上的版本. 然后再安装这个:
 
 ```bash
-npm install laravel-rollup-elixir --save-dev
+npm install pilishen/Laravel-Elixir-Rollup --save-dev
 ```
 
 ## 使用
