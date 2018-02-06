@@ -1,0 +1,49 @@
+{
+  "name": "laravel-rollup-elixir",
+  "version": "1.2.0",
+  "description": "optimized version of laravel-elixir-rollup-offical plugin,support for compiling js with rollup",
+  "main": "dist/index.js",
+  "scripts": {
+    "compile": "babel --presets=es2015 -d dist src",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pilishen/Laravel-Elixir-Rollup.git"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-inject": "^2.0.0",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-multi-entry": "^2.0.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-vue": "^3.0.0",
+    "rollup-stream": "^1.24.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "deprecated": false,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015-rollup": "^3.0.0"
+  },
+  "keywords": [
+    "laravel",
+    "elixir",
+    "rollup",
+    "vue"
+  ],
+  "author": "pilishen <pilishen@outlook.com> (http://pilishen.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pilishen/Laravel-Elixir-Rollup/issues"
+  },
+  "homepage": "https://github.com/pilishen/Laravel-Elixir-Rollup#readme"
+}
