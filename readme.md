@@ -59,5 +59,3 @@ or by passing a Rollup config object as the fourth argument to `mix.rollup`. You
 Uncaught ReferenceError: require is not defined
 ```
 所以，尽量都用es6的`import`格式，或者完全用以前的`require`
-
-
