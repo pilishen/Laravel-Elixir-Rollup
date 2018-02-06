@@ -3,6 +3,7 @@
 This extension brings [Rollup.js](http://rollupjs.org/) support to your Laravel Elixir builds. 
 
 this is an optimized version to the orginal laravel-elixir-rollup-offical
+
 这是一份优化版本的laravel-elixir-rollup-offical，中文文档请看`readme-chinese.md`
 ## Install
 
@@ -61,6 +62,7 @@ or by passing a Rollup config object as the fourth argument to `mix.rollup`. You
 Uncaught ReferenceError: require is not defined
 ```
 though we already include commonjs to transform old standard, mixed use of `import` and `require` still is a problem
+
 2. back in webpack days, we can import css within `script` tag, especially when dealing with vue component, however with rollup vue plugin, you should import related css file under `style` tag, like this:
 ```
 // do not forget lang specification
