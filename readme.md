@@ -4,7 +4,8 @@ This extension brings [Rollup.js](http://rollupjs.org/) support to your Laravel 
 
 this is an optimized version to the orginal laravel-elixir-rollup-offical
 
-这是一份优化版本的laravel-elixir-rollup-offical，中文文档请看`readme-chinese.md`
+这是一份优化版本的laravel-elixir-rollup-offical，中文文档请看 [中文说明.md](https://github.com/pilishen/Laravel-Elixir-Rollup/blob/master/%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E.md) 
+
 ## Install
 
 First, ensure that you're using Laravel Elixir v6 or newer. Next, install the extension like so:
