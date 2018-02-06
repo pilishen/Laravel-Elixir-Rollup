@@ -2,12 +2,14 @@
 
 This extension brings [Rollup.js](http://rollupjs.org/) support to your Laravel Elixir builds. 
 
+this is an optimized version to the orginal laravel-elixir-rollup-offical
+
 ## Install
 
 First, ensure that you're using Laravel Elixir v6 or newer. Next, install the extension like so:
 
 ```bash
-npm install laravel-elixir-rollup-official --save-dev
+npm install laravel-rollup-elixir --save-dev
 ```
 
 ## Use
@@ -54,8 +56,17 @@ Lastly, should you need to override the default Rollup configuration, you may do
 or by passing a Rollup config object as the fourth argument to `mix.rollup`. You can [learn more about Rollup config files here.](http://rollupjs.org/guide/#using-config-files)
 
 ### Troubleshooting
-1. 尽管有rollup-plugin-commonjs来转换普通的js格式，但是你在一个js文件里不能混着使用`requre`和`import`，否则commonjs会跳过这个文件不转换，导致出现下面的错误
+1. since we're expected to use es6 standard, otherwise no need to butter rollup, then we should alawys use `import` other than `require` to avoid this error
 ```
 Uncaught ReferenceError: require is not defined
 ```
-所以，尽量都用es6的`import`格式，或者完全用以前的`require`
+though we already include commonjs to transform old standard, mixed use of `import` and `require` still is a problem
+2. back in webpack days, we can import css within `script` tag, especially when dealing with vue component, however with rollup vue plugin, you should import related css file under `style` tag, like this:
+```
+// do not forget lang specification
+<style lang="scss">
+
+    @import 'node_modules/path/to/your/cssfileName'
+    // remember, do not add .css extension
+<style>
+```

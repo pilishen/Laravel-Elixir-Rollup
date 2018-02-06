@@ -3,11 +3,8 @@ import gulp from 'gulp';
 import {extend} from 'underscore';
 import Elixir from 'laravel-elixir';
 
-<<<<<<< HEAD
 let buffer, inject, rollup, babel,vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins;
-=======
-let buffer, inject, rollup, buble, babel,vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins;
->>>>>>> rollup/master
+
 
 class RollupTask extends Elixir.Task {
 
@@ -60,10 +57,6 @@ class RollupTask extends Elixir.Task {
         buffer = require('vinyl-buffer');
         rollup = require('rollup-stream');
         vue = require('rollup-plugin-vue');
-<<<<<<< HEAD
-=======
-        buble = require('rollup-plugin-buble');
->>>>>>> rollup/master
         babel = require('rollup-plugin-babel');
         source = require('vinyl-source-stream');
         replace = require('rollup-plugin-replace');
@@ -91,26 +84,16 @@ class RollupTask extends Elixir.Task {
             //}),
             multiEntry(),
             json(),
-<<<<<<< HEAD
             nodeResolve({
                 browser: true,
                 main: true,
                 jsnext: true ,
                 preferBuiltins: true,
                 extensions: [ '.js', '.json', '.css','.vue' ],
-=======
-            nodeResolve({ browser: true, main: true, jsnext: true , preferBuiltins: true}),
-            commonjs({
-                include: [
-                    'node_modules/**',
-                    this.src.baseDir + '/**'
-                ]
->>>>>>> rollup/master
             }),
             replace({
                 'process.env.NODE_ENV': JSON.stringify(Elixir.inProduction)
             }),
-<<<<<<< HEAD
             vue({css:true, compileTemplate: true, htmlMinifier: {collapseBooleanAttributes: false}}),
             babel({
                 exclude: 'node_modules/**',
@@ -127,20 +110,6 @@ class RollupTask extends Elixir.Task {
             }),
             globals(),
             builtins(),
-
-
-=======
-            vue(),
-            buble(),
-            babel({
-                exclude: 'node_modules/**',
-                babelrc: false,
-                "presets": ["es2015-rollup"],
-                "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
-            }),
-            globals(),
-            builtins()
->>>>>>> rollup/master
         ].concat(this.options.plugins || []);
 
         delete this.options.plugins
