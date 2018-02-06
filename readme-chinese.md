@@ -1,20 +1,21 @@
-# Laravel Elixir Rollup Integration
+# 为何要整这个
+自从laravel-mix在5.4版本推出以后，尽管其背后完全依赖了webpack，按说要比之前elixir的gulp方案更好，但是实际的使用体验却并不好，编译文件很慢，即使用了watch，很影响开发效率，而且编译出来的文件也越来越大，动不动就几M，我们明明一般提倡要合并压缩文件，现在却不得不因为体积庞大而拆分，shame！
 
-This extension brings [Rollup.js](http://rollupjs.org/) support to your Laravel Elixir builds. 
+所以时不时会怀念之前的laravel-elixir，但是如果用elixir的webpack来打包，文件体积问题还是没解决。elixir默认还支持使用rollup来编译js，需要额外安装laravel-elixir-rollup-offical，这是由jeffrey way牵头开发的，但截至到我fork原版本开始维护的时候，已经有2年没有更新了，已经不能满足新近的编译需求了，尤其是对vue组件的编译上
 
-this is an optimized version to the orginal laravel-elixir-rollup-offical
+rollup的好处是相当于让我们提前享受ES6的写法，即使现在浏览器都还支持有限，所以称作是下一代的js编译器，编译速度并不见得比webpack就快，往往两者差不多，但是编译出来的文件体积却是差别很大，往往rollup编译出来的同样文件，只是webpack编译出的三分之一、二分之一，原因是rollup使用了tree shaking，也就是把你实际没用到的代码略掉、不编译，而webpack则是一股脑全编译，比如你只是用了jquery的一个方法，那么它也把你整个jquery库编译进去了，这不人道~好了，有了rollup，我们又可以合并很多的js了！
 
-## Install
+## 安装
 
-First, ensure that you're using Laravel Elixir v6 or newer. Next, install the extension like so:
+首先，你得安装了 Laravel Elixir v6以上的版本. 然后再安装这个:
 
 ```bash
 npm install laravel-rollup-elixir --save-dev
 ```
 
-## Use
+## 使用
 
-You're all set! Open your `gulpfile.js`, and add:
+在你的`gulpfile.js`中这样写:
 
 ```js
 elixir(function(mix) {
@@ -22,8 +23,7 @@ elixir(function(mix) {
 });
 ```
 
-This will, by default, compile `resources/assets/js/main.js` to `public/js/main.js`. Should you require a non-standard base directory for your 
-source files, begin the path with `./`. This instructs Laravel Elixir to omit any default base directories.
+如此，就会把你`resources/assets/js/main.js` 编译到`public/js/main.js`. 如果你想着跳出这个默认路径，可以在文件开头加上`./`，这样就从你的项目根目录来定位文件了
 
 ```js
 elixir(function(mix) {
@@ -31,7 +31,7 @@ elixir(function(mix) {
 });
 ```
 
-Similarly, if you require a different output directory, provide a file or directory path as the second argument to `mix.rollup`.
+第二个参数可以用来定义输出路径和目标文件名
 
 ```js
 elixir(function(mix) {
@@ -39,10 +39,7 @@ elixir(function(mix) {
 });
 ```
 
-Now, you're specifying that you want to compile `resources/assets/js/main.js` to `public/build/bundle.js`.
-
-If providing an array of source files, it might be useful to override the default base directory. If desired, specify a path as the third argument.
-
+如果你想编译多个文件，第一个参数可以是array的形式，假设这个时候你想跳出默认目录，也即`resources/assets/js/`,你可以在第三个参数定义一个新的根目录，比如下面的例子就从'app/js'目录下来找array里的待编译文件，也即`app/js/main.js` 和 `app/js/other.js`.
 
 ```js
 elixir(function(mix) {
@@ -50,14 +47,23 @@ elixir(function(mix) {
 });
 ```
 
-With this adjustment, we'll compile `app/js/main.js` and `app/js/other.js`.
+最后，如果你想着自定义配置rollup，可以在根目录创建一个`rollup.config.js`文件来配置，也可以在`mix.rollup`方法的第四个参数中传递相应的配置项，关于rollup配置，[可以看这里](http://rollupjs.org/guide/#using-config-files)。需要说明的是，如果你按照rollup文档配置`rollup.config.js`文件，默认肯定会出错的，会提示`unexpected token`，这也是es6支持不够的缘故，你需要用`export default`的输出形式
 
-Lastly, should you need to override the default Rollup configuration, you may do so by either creating a `rollup.config.js` file in your project root, 
-or by passing a Rollup config object as the fourth argument to `mix.rollup`. You can [learn more about Rollup config files here.](http://rollupjs.org/guide/#using-config-files)
 
-### Troubleshooting
+### 使用过程中的tips
 1. 尽管有rollup-plugin-commonjs来转换普通的js格式，但是你在一个js文件里不能混着使用`requre`和`import`，否则commonjs会跳过这个文件不转换，导致出现下面的错误
 ```
 Uncaught ReferenceError: require is not defined
 ```
-所以，尽量都用es6的`import`格式，或者完全用以前的`require`
+所以，尽量都用es6的`import`格式
+
+2. 在webpack下，我们可以在`script`标签下引入css,尤其是在vue组件中，因为第三方的vue组件往往提供一些默认的样式，一般是在node_modules目录下，但是在rollup下，你不能这样调用了,而应该像下面这样
+   ```
+   // 也即将第三方的css调用放到style标签下，这里注意不要忘记lang声明
+   <style lang="scss">
+   
+       @import 'node_modules/path/to/your/cssfileName'
+       // 这里注意不要加.css后缀
+   <style>
+   ```
+3. 为了满足你的特定需求，可能你需要自定义babel配置，这个可以通过`.babelrc`文件来进一步声明
