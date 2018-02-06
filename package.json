@@ -1,6 +1,6 @@
 {
-  "name": "laravel-rollup-elixir",
-  "version": "1.2.1",
+  "name": "laravel-elixir-rollup-offical",
+  "version": "1.2.2",
   "description": "optimized version of laravel-elixir-rollup-offical plugin,support for compiling js with rollup",
   "main": "dist/index.js",
   "scripts": {
