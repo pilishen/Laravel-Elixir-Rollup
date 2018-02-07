@@ -30,8 +30,9 @@
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "rollup-plugin-filesize": "^1.5.0",
-    "rollup-plugin-butternut": "^0.1.0",
-    "rollup-plugin-conditional": "^1.1.1"
+    "rollup-plugin-babel-minify": "^4.0.0",
+    "rollup-plugin-conditional": "^1.1.1",
+    "rollup-plugin-progress": "^0.4.0"
   },
   "deprecated": false,
   "devDependencies": {
