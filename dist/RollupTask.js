@@ -41,8 +41,7 @@ var buffer = void 0,
     cache = void 0,
     json = void 0,
     globals = void 0,
-    builtins = void 0,
-    uglify = void 0;
+    builtins = void 0;
 
 var RollupTask = function (_Elixir$Task) {
     _inherits(RollupTask, _Elixir$Task);
@@ -110,7 +109,6 @@ var RollupTask = function (_Elixir$Task) {
             json = require('rollup-plugin-json');
             globals = require('rollup-plugin-node-globals');
             builtins = require('rollup-plugin-node-builtins');
-            uglify = require('rollup-plugin-uglify');
         }
 
         /**
@@ -142,7 +140,7 @@ var RollupTask = function (_Elixir$Task) {
                 "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
             }), commonjs({
                 include: ['node_modules/**', this.src.baseDir + '/**']
-            }), globals(), builtins(), uglify()].concat(this.options.plugins || []);
+            }), globals(), builtins()].concat(this.options.plugins || []);
 
             delete this.options.plugins;
 
