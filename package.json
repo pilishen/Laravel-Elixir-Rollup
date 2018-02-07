@@ -28,7 +28,8 @@
     "vinyl-source-stream": "^2.0.0",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "rollup-plugin-closure-compiler-js": "^1.0.6"
   },
   "deprecated": false,
   "devDependencies": {
