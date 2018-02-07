@@ -42,7 +42,10 @@ var buffer = void 0,
     json = void 0,
     globals = void 0,
     builtins = void 0,
-    closure = void 0;
+    filesize = void 0,
+    butternut = void 0,
+    progress = void 0,
+    conditional = void 0;
 
 var RollupTask = function (_Elixir$Task) {
     _inherits(RollupTask, _Elixir$Task);
@@ -110,7 +113,10 @@ var RollupTask = function (_Elixir$Task) {
             json = require('rollup-plugin-json');
             globals = require('rollup-plugin-node-globals');
             builtins = require('rollup-plugin-node-builtins');
-            closure = require('rollup-plugin-closure-compiler-js');
+            filesize = require('rollup-plugin-filesize');
+            butternut = require('rollup-plugin-butternut');
+            progress = require('rollup-plugin-progress');
+            conditional = require('rollup-plugin-conditional');
         }
 
         /**
@@ -142,7 +148,7 @@ var RollupTask = function (_Elixir$Task) {
                 "plugins": ["syntax-object-rest-spread", "transform-object-rest-spread"]
             }), commonjs({
                 include: ['node_modules/**', this.src.baseDir + '/**']
-            }), globals(), builtins(), closure()].concat(this.options.plugins || []);
+            }), globals(), builtins(), filesize(), butternut(), progress(), conditional()].concat(this.options.plugins || []);
 
             delete this.options.plugins;
 

@@ -29,7 +29,9 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "rollup-plugin-closure-compiler-js": "^1.0.6"
+    "rollup-plugin-filesize": "^1.5.0",
+    "rollup-plugin-butternut": "^0.1.0",
+    "rollup-plugin-conditional": "^1.1.1"
   },
   "deprecated": false,
   "devDependencies": {

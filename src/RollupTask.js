@@ -3,7 +3,7 @@ import gulp from 'gulp';
 import {extend} from 'underscore';
 import Elixir from 'laravel-elixir';
 
-let buffer, inject, rollup, babel,vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins, closure;
+let buffer, inject, rollup, babel,vue, source, replace, commonjs, nodeResolve, multiEntry, cache, json, globals, builtins, filesize,butternut,progress,conditional;
 
 
 class RollupTask extends Elixir.Task {
@@ -67,7 +67,10 @@ class RollupTask extends Elixir.Task {
         json = require('rollup-plugin-json');
         globals = require('rollup-plugin-node-globals');
         builtins = require('rollup-plugin-node-builtins');
-        closure = require('rollup-plugin-closure-compiler-js');
+        filesize = require('rollup-plugin-filesize');
+        butternut = require('rollup-plugin-butternut');
+        progress = require('rollup-plugin-progress');
+        conditional = require('rollup-plugin-conditional');
     }
 
 
@@ -111,7 +114,10 @@ class RollupTask extends Elixir.Task {
             }),
             globals(),
             builtins(),
-            closure()
+            filesize(),
+            butternut(),
+            progress(),
+            conditional()
         ].concat(this.options.plugins || []);
 
         delete this.options.plugins
